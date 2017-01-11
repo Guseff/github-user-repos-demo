@@ -16,30 +16,40 @@ export function newSetUser() {
     };
 }
 
-export function listRepos(user) {
-    var param = 'https://api.github.com/users/' + user + '/repos'; 
-    if (user == '' || user == undefined) {
-        return (dispatch) => {
-            dispatch({
-                type: 'LIST_REPOS',
-                payload: []
-            });
-        }
-    }
-    return (dispatch) => {
-        return fetch(param)
-            .then((resp) => resp.json())
-            .then((resp) => {
-                resp = resp.map((elem) => {
-                    return elem.name;
-                });
+export function listRepos() {
+    // var param = 'https://api.github.com/users/' + user + '/repos'; 
+    // if (user == '' || user == undefined) {
+    //     return (dispatch) => {
+    //         dispatch({
+    //             type: 'LIST_REPOS',
+    //             payload: []
+    //         });
+    //     }
+    // }
+    // return (dispatch) => {
+    //     return fetch(param)
+    //         .then((resp) => resp.json())
+    //         .then((resp) => {
+    //             resp = resp.map((elem) => {
+    //                 return elem.name;
+    //             });
                 
-                dispatch({
-                    type: 'LIST_REPOS',
-                    payload: resp
-                });
-            })
-    };
+    //             dispatch({
+    //                 type: 'LIST_REPOS',
+    //                 payload: resp
+    //             });
+    //         })
+    // };
+    var param = 'http://localhost:3000/';
+    fetch(param, {
+            method: 'post',  
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({foo: 'bar', lorem: 'ipsum'}),
+          }
+        );
 }
 
 export function goRepos(selected) {  
